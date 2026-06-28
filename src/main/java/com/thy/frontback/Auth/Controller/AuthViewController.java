@@ -13,8 +13,13 @@ public class AuthViewController {
     }
 
     @GetMapping
-    public String getMethodName() {
+    public String LogIn() {
         return "auth/auth";
+    }
+    
+    @GetMapping("/reg")
+    public String Reg() {
+        return "auth/reg";
     }
     
 }

@@ -1,0 +1,128 @@
+/* Contenedor del Registro */
+.register-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 450px;
+    padding: 40px 30px;
+    margin: auto 20px;
+    border: 1px solid #e2e8f0;
+}
+
+/* Título */
+.register-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.register-header h2 {
+    color: #1a202c;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.register-header p {
+    color: #718096;
+    font-size: 14px;
+}
+
+/* Grupos de formularios */
+.input-group {
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #4a5568;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+/* Efecto Focus Verde */
+.input-group input:focus {
+    border-color: #2e7d32;
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15);
+}
+
+/* Fila para campos dobles */
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-row .input-group {
+    flex: 1;
+}
+
+/* Términos y condiciones */
+.terms-option {
+    margin-bottom: 24px;
+    font-size: 13px;
+}
+
+.terms-option label {
+    color: #4a5568;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.terms-option a {
+    color: #2e7d32;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.terms-option a:hover {
+    text-decoration: underline;
+}
+
+/* Botón de registro */
+.register-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #2e7d32;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.register-btn:hover {
+    background-color: #1b5e20;
+}
+
+/* Enlace de volver al login */
+.login-link {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 14px;
+    color: #718096;
+}
+
+.login-link a {
+    color: #2e7d32;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}

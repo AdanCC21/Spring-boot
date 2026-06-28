@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.thy.frontback.User.Entities.User;
 import com.thy.frontback.User.Service.UserService;
 
 @Controller

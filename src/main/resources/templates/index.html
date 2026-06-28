@@ -1,20 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link reel="stylesheet" href="index.css" />
-    <title>Spring</title>
+    <title>Spring Boot - Panel de Prueba</title>
+    <link rel="stylesheet" th:href="@{/css/index.css}" />
+    <link rel="stylesheet" th:href="@{/css/welcome.css}" />
 </head>
+
 <body>
-    <h1>Welcome to my Spring Boot project</h1>
-    <h5>Usuario</h5>
-    <div>
-        <span th:text="${user.name}">Nombre</span>
+    <header th:replace="~{fragments/header :: header}"></header>
+    
+    <div class="welcome-container">
+
+        <!-- Icono decorativo estilo Spring Leaf -->
+        <div class="spring-logo">🍃</div>
+
+        <h1 class="welcome-title">¡Conexión Exitosa!</h1>
+        <p class="welcome-subtitle">
+            Si estás viendo esta pantalla, tu servidor local de <strong>Spring Boot</strong> está corriendo
+            correctamente. Esta es una interfaz limpia lista para integrar tus controladores de autenticación.
+        </p>
+
+        <!-- Información de Prueba del Entorno -->
+        <div class="status-box">
+            <h3 class="status-title">Estado de la Aplicación de Prueba</h3>
+
+            <div class="status-row">
+                <span class="status-label">Servidor Backend:</span>
+                <span class="badge badge-success">ONLINE</span>
+            </div>
+
+            <div class="status-row">
+                <span class="status-label">Puerto asignado:</span>
+                <span class="badge badge-info">8080</span>
+            </div>
+
+            <div class="status-row">
+                <span class="status-label">Tecnología vista:</span>
+                <span class="badge badge-info">HTML5 / CSS Puro</span>
+            </div>
+        </div>
+
+        <!-- Acciones Rápidas -->
+        <div class="action-grid">
+            <a href="login.html" class="btn btn-login">Ir al Login</a>
+            <a href="registro.html" class="btn btn-register">Probar Registro</a>
+        </div>
     </div>
 
-    <ul style="display: flex; flex-direction: column;">
-        <li th:each="user : ${users}" th:text="${user.name}"></li>
-    </ul>
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>
+
 </html>

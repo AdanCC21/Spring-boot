@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <li th:fragment="userCard(user)" class="user-card">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80"
+            alt="Usuario" class="user-avatar">
+        <h3 th:text="${user.name}" class="user-name">Usuario</h3>
+        <p th:text="${user.email}" class="user-email">correo</p>
+        <a href="#" class="btn-view">Ver Perfil</a>
+    </li>
+</body>
+
+</html>

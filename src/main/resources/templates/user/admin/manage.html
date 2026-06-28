@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuarios</title>
+    <link rel="stylesheet" th:href="@{/css/index.css}" />
+    <link rel="stylesheet" th:href="@{/css/user/users.css}" />
+</head>
+
+<body>
+
+    <header th:replace="~{fragments/header :: header}"></header>
+
+    <div class="main-container">
+        <h2 class="section-title">Usuarios Registrados</h2>
+
+
+        <ul th:if="${users != null and users.size() > 0}" class="users-grid">
+            <th:block th:each="user : ${users}">
+                <li th:replace="~{fragments/userCard :: userCard(${user})}"></li>
+            </th:block>
+        </ul>
+
+        <span th:unless="${users != null and users.size() > 0}">
+            No hay usuarios registrados
+        </span>
+    </div>
+
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil</title>
+    <link rel="stylesheet" th:href="@{/css/index.css}" />
+    <link rel="stylesheet" th:href="@{/css/user/profile.css}" />
+</head>
+<body>
+
+    <header th:replace="~{fragments/header :: header}"></header>
+
+    <div class="profile-container">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80" alt="Foto de perfil" class="profile-avatar">
+        
+        <h2 class="profile-name">Ana Martínez</h2>
+        <p class="profile-role">Administrador</p>
+
+        <div class="profile-info">
+            <div class="info-group">
+                <p class="info-label">Nombre Completo</p>
+                <p class="info-value">Ana Martínez Gómez</p>
+            </div>
+            <div class="info-group">
+                <p class="info-label">Correo Electrónico</p>
+                <p class="info-value">ana.martinez@ejemplo.com</p>
+            </div>
+            <div class="info-group">
+                <p class="info-label">Ubicación</p>
+                <p class="info-value">Baja California, México</p>
+            </div>
+        </div>
+
+        <div class="profile-actions">
+            <button class="btn btn-primary">Editar Perfil</button>
+            <button class="btn btn-logout">Cerrar Sesión</button>
+        </div>
+    </div>
+
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>
