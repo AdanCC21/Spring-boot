@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/index.css}" />
+    <link rel="stylesheet" th:href="@{/css/product/home.css}" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <section class="catalog-section">
+        <h3 class="catalog-title">Artículos en venta</h3>
+
+        <ul class="products-grid" th:if="${productList != null and !productList.isEmpty()}">
+            <th:block th:each="prod : ${productList}">
+                <li class="product-card">
+                    <div class="product-image-wrapper">
+                        <img th:if="${prod.image != null}" th:src="${prod.image}" alt="Imagen del producto"
+                            class="product-image" />
+                        <img th:unless="${prod.image != null}" src="https://via.placeholder.com/150" alt="Sin imagen"
+                            class="product-image" />
+                    </div>
+
+                    <div class="product-info">
+                        <span class="product-brand" th:text="${prod.brand}">Marca</span>
+                        <h2 class="product-name" th:text="${prod.title}">Título del Producto</h2>
+                        <div class="product-meta">
+                            <span class="product-price" th:text="${'$' + prod.price}">$0.00</span>
+                            <a href="#" class="btn-buy">Comprar</a>
+                        </div>
+                    </div>
+                </li>
+            </th:block>
+        </ul>
+
+        <div class="no-products" th:unless="${productList != null and !productList.isEmpty()}">
+            <p>No hay artículos disponibles en este momento.</p>
+        </div>
+    </section>
+    <button onclick="window.location.href = '/product/add'">
+        <span>Add</span>
+    </button>
+</body>
+
+</html>

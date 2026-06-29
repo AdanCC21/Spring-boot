@@ -18,10 +18,10 @@ public class Product {
     private String title;
 
     @Column(nullable = false)
-    private String Brand;
+    private String brand;
 
     @Column(nullable = true)
-    private String Image;
+    private String image;
 
     public Long getId() {
         return id;
@@ -48,19 +48,19 @@ public class Product {
     }
 
     public String getBrand() {
-        return Brand;
+        return brand;
     }
 
     public void setBrand(String brand) {
-        Brand = brand;
+        this.brand = brand;
     }
 
     public String getImage() {
-        return Image;
+        return image;
     }
 
     public void setImage(String image) {
-        Image = image;
+        this.image = image;
     }
 
 }

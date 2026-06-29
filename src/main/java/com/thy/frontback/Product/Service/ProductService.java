@@ -48,14 +48,22 @@ public class ProductService {
         return ResponseEntity.ok(created);
     }
 
-    public ResponseEntity<Product> update(UpdateProductDTO dto) {
-        if (dto == null) {
+    public ResponseEntity<Product> update(Long id, UpdateProductDTO dto) {
+        if (dto == null || id == null || id <= 0) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
-        Product toUpdate = new Product();
-        toUpdate.setTitle(dto.getTitle());
-        toUpdate.setPrice(dto.getPrice());
-        if (!dto.getImage().isEmpty()) {
+
+        Product toUpdate = this.repo.findById(id).orElseThrow();
+
+        if (dto.getTitle() != null && !dto.getTitle().isEmpty()) {
+            toUpdate.setTitle(dto.getTitle());
+        }
+
+        if (dto.getPrice() != null) {
+            toUpdate.setPrice(dto.getPrice());
+        }
+
+        if (dto.getImage() != null && !dto.getImage().isEmpty()) {
             toUpdate.setImage(dto.getImage());
         }
 
@@ -71,7 +79,7 @@ public class ProductService {
 
         ResponseEntity<Product> finded = this.getById(id);
 
-        if(finded == null){
+        if (finded == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 

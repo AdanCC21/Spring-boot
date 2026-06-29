@@ -10,7 +10,7 @@ public class UpdateProductDTO {
     private String title;
 
     @Column(nullable = true)
-    private String Image;
+    private String image;
 
     public Long getPrice() {
         return price;
@@ -29,10 +29,12 @@ public class UpdateProductDTO {
     }
 
     public String getImage() {
-        return Image;
+        return image;
     }
 
     public void setImage(String image) {
-        Image = image;
+        this.image = image;
     }
+
+    
 }
