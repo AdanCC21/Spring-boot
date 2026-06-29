@@ -18,7 +18,7 @@ public class ProductViewController {
 
     @GetMapping
     public String HomePage(Model model) {
-        model.addAttribute("productList", this.service.getAll().getBody());
+        model.addAttribute("productList", this.service.getAll());
         return "products/home";
     }
 

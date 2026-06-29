@@ -1,0 +1,9 @@
+package com.thy.frontback.Exceptions.E_500;
+
+public class InternalServerError extends RuntimeException{
+
+    public InternalServerError(String message) {
+        super(message);
+    }
+    
+}

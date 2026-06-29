@@ -29,26 +29,26 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<List<Product>> getAll() {
-        return this.service.getAll();
+        return ResponseEntity.ok(this.service.getAll());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Product> getById(@PathVariable Long id) {
-        return service.getById(id);
+        return ResponseEntity.ok(service.getById(id));
     }
 
     @PostMapping
     public ResponseEntity<Product> create(@RequestBody CreateProductDTO dto) {
-        return service.create(dto);
+        return ResponseEntity.ok(service.create(dto));
     }
 
     @PatchMapping("/{id}")
     public ResponseEntity<Product> update(@PathVariable Long id, @RequestBody UpdateProductDTO dto) {
-        return service.update(id, dto);
+        return ResponseEntity.ok(service.update(id, dto));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable Long id) {
-        return service.delete(id);
+        return ResponseEntity.ok(service.delete(id));
     }
 }

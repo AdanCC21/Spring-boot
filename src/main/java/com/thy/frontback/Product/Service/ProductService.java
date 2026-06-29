@@ -2,10 +2,9 @@ package com.thy.frontback.Product.Service;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.thy.frontback.Exceptions.E_400.*;
 import com.thy.frontback.Product.Entities.Product;
 import com.thy.frontback.Product.Entities.DTO.CreateProductDTO;
 import com.thy.frontback.Product.Entities.DTO.UpdateProductDTO;
@@ -19,41 +18,41 @@ public class ProductService {
         this.repo = repo;
     }
 
-    public ResponseEntity<List<Product>> getAll() {
+    public List<Product> getAll() {
         List<Product> products = this.repo.findAll();
-        return ResponseEntity.ok(products);
+        return products;
     }
 
-    public ResponseEntity<Product> getById(Long id) {
-        Product prod = this.repo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
-
-        return ResponseEntity.ok(prod);
+    public Product getById(Long id) {
+        return this.repo.findById(id)
+                .orElseThrow(() -> new NotFoundExc("El producto con el id " + id + " No fue encontrado."));
     }
 
-    public ResponseEntity<Product> create(CreateProductDTO dto) {
+    public Product create(CreateProductDTO dto) {
         if (dto == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            throw new BadRequest("No se especifico el objeto a actualizar");
         }
+
         Product toCreate = new Product();
+
         toCreate.setTitle(dto.getTitle());
         toCreate.setBrand(dto.getBrand());
         toCreate.setPrice(dto.getPrice());
+
         if (!dto.getImage().isEmpty()) {
             toCreate.setImage(dto.getImage());
         }
 
-        Product created = this.repo.save(toCreate);
-
-        return ResponseEntity.ok(created);
+        return this.repo.save(toCreate);
     }
 
-    public ResponseEntity<Product> update(Long id, UpdateProductDTO dto) {
+    public Product update(Long id, UpdateProductDTO dto) {
         if (dto == null || id == null || id <= 0) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            throw new BadRequest("No se enviaron todos los atributos necesarios. Id = " + id + " DTO = " + dto);
         }
 
-        Product toUpdate = this.repo.findById(id).orElseThrow();
+        Product toUpdate = this.repo.findById(id)
+                .orElseThrow(() -> new NotFoundExc("El producto con el id " + id + " no fue encontrado"));
 
         if (dto.getTitle() != null && !dto.getTitle().isEmpty()) {
             toUpdate.setTitle(dto.getTitle());
@@ -67,23 +66,16 @@ public class ProductService {
             toUpdate.setImage(dto.getImage());
         }
 
-        Product updated = this.repo.save(toUpdate);
-
-        return ResponseEntity.ok(updated);
+        return this.repo.save(toUpdate);
     }
 
-    public ResponseEntity<Boolean> delete(Long id) {
+    public Boolean delete(Long id) {
         if (id == null || id < 0) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            throw new BadRequest("El id no fue especificado o no es valido");
         }
 
-        ResponseEntity<Product> finded = this.getById(id);
-
-        if (finded == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-
-        this.repo.deleteById(id);
-        return ResponseEntity.ok(true);
+        this.getById(id);
+        repo.deleteById(id);
+        return true;
     }
 }
