@@ -1,16 +1,26 @@
 package com.thy.frontback.Product.Entities.DTO;
 
-import jakarta.persistence.Column;
-
-public class UpdateProductDTO {
-    @Column(nullable = false)
+public class UpdateProductDTO {    
     private Long price;
 
-    @Column(nullable = false)
+
     private String title;
 
-    @Column(nullable = true)
     private String image;
+
+    public UpdateProductDTO(Long price, String title, String image) {
+        this.price = price;
+        this.title = title;
+        this.image = image;
+    }
+
+    public UpdateProductDTO(Long price, String title) {
+        this.price = price;
+        this.title = title;
+    }
+
+    public UpdateProductDTO() {
+    }
 
     public Long getPrice() {
         return price;

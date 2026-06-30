@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.thy.frontback.Brand.Entities.Brand;
+import com.thy.frontback.Brand.Service.BrandService;
 import com.thy.frontback.Exceptions.E_400.*;
 import com.thy.frontback.Product.Entities.Product;
 import com.thy.frontback.Product.Entities.DTO.CreateProductDTO;
@@ -13,9 +15,11 @@ import com.thy.frontback.Product.Repo.ProductRepo;
 @Service
 public class ProductService {
     private final ProductRepo repo;
+    private final BrandService brandService;
 
-    public ProductService(ProductRepo repo) {
+    public ProductService(ProductRepo repo, BrandService brandService) {
         this.repo = repo;
+        this.brandService = brandService;
     }
 
     public List<Product> getAll() {
@@ -28,6 +32,15 @@ public class ProductService {
                 .orElseThrow(() -> new NotFoundExc("El producto con el id " + id + " No fue encontrado."));
     }
 
+    public Product getByTitle(String title) {
+        return this.repo.findByTitle(title)
+                .orElseThrow(() -> new NotFoundExc("El producto con el titulo " + title + " No fue encontrado"));
+    }
+
+    public boolean existByTitle(String title) {
+        return this.repo.existsByTitle(title);
+    }
+
     public Product create(CreateProductDTO dto) {
         if (dto == null) {
             throw new BadRequest("No se especifico el objeto a actualizar");
@@ -36,10 +49,12 @@ public class ProductService {
         Product toCreate = new Product();
 
         toCreate.setTitle(dto.getTitle());
-        toCreate.setBrand(dto.getBrand());
         toCreate.setPrice(dto.getPrice());
 
-        if (!dto.getImage().isEmpty()) {
+        Brand brand = brandService.getById(dto.getBrandId());
+        toCreate.setBrand(brand);
+
+        if (dto.getImage() != null && !dto.getImage().isEmpty()) {
             toCreate.setImage(dto.getImage());
         }
 

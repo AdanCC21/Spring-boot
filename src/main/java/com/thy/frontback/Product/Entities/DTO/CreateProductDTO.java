@@ -1,18 +1,12 @@
 package com.thy.frontback.Product.Entities.DTO;
 
-import jakarta.persistence.Column;
-
 public class CreateProductDTO {
-    @Column(nullable = false)
     private Long price;
 
-    @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false)
-    private String brand;
+    private Long brandId;
 
-    @Column(nullable = true)
     private String image;
 
     public Long getPrice() {
@@ -31,12 +25,12 @@ public class CreateProductDTO {
         this.title = title;
     }
 
-    public String getBrand() {
-        return brand;
+    public Long getBrandId() {
+        return brandId;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public void setBrandId(Long brandId) {
+        this.brandId = brandId;
     }
 
     public String getImage() {
@@ -46,6 +40,21 @@ public class CreateProductDTO {
     public void setImage(String image) {
         this.image = image;
     }
-
     
+
+    public CreateProductDTO() {
+    }
+
+    public CreateProductDTO(Long price, String title, Long brandId, String image) {
+        this.price = price;
+        this.title = title;
+        this.brandId = brandId;
+        this.image = image;
+    }
+
+    public CreateProductDTO(Long price, String title, Long brandId) {
+        this.price = price;
+        this.title = title;
+        this.brandId = brandId;
+    }    
 }

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/index.css}" />
     <link rel="stylesheet" th:href="@{/css/product/home.css}" />
+    <link rel="stylesheet" th:href="@{/css/modal.css}" />
     <title>Document</title>
 </head>
 
@@ -41,9 +42,33 @@
             <p>No hay artículos disponibles en este momento.</p>
         </div>
     </section>
-    <button onclick="window.location.href = '/product/add'">
-        <span>Add</span>
+    
+    <button onclick="Modal.open('modal-prueba')">
+        <span>Modal</span>
     </button>
+
+    <div th:replace="~{fragments/modal :: modal('modal-prueba','Modal de prueba','sm')}">
+
+        <th:block th:ref="modalBody">
+            <p>Contenido de la modal</p>
+        </th:block>
+
+        <th:block th:ref="modalFooter">
+            <button>
+                Footer
+            </button>
+            <button onclick="closeModal()">
+                cerrar
+            </button>
+        </th:block>
+    </div>
+
+    <script th:src="@{/js/modal.js}"></script>
+    <script>
+        function closeModal(){
+            Modal.close('modal-prueba')
+        }
+    </script>
 </body>
 
 </html>
