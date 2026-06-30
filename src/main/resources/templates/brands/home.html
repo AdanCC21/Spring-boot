@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/index.css}" />
+    <link rel="stylesheet" th:href="@{/css/product/home.css}" />
+    <link rel="stylesheet" th:href="@{/css/modal.css}" />
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Brands</h2>
+
+    <section>
+        <table class="product-table">
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Acciones</th>
+            </tr>
+            <th:block th:each="brand : ${brands}">
+                <tr>
+                    <td th:text="${brand.id}">Id</td>
+                    <td th:text="${brand.name}">Nombre</td>
+                    <td>
+                        <button class="btn btn-default" th:onclick="'openDetails(' + ${brand.id} + ')'">Ver Detalles</button>
+                        <button class="btn btn-default" th:onclick="'openDetails(' + ${brand.id} + ')'">Ver Detalles
+                            2</button>
+                    </td>
+                </tr>
+            </th:block>
+        </table>
+    </section>
+
+    <!-- Modal de detalles -->
+    <div th:replace="~{fragments/modal :: modal('modal-details','Detalles','md', ~{::#modal-body}, ~{::#modal-footer})}">
+        <th:block id="modal-body">
+            <section>
+                <h3 id="modal-id-brand">ID</h3>
+                <h5 id="modal-name-brand">Nombre</h5>
+                <ul id="modal-products-brand">
+
+                </ul>
+            </section>
+        </th:block>
+    
+        <th:block id="modal-footer">
+            <button onclick="closeDetails('modal-details')">Cerrar</button>
+        </th:block>
+    </div>
+
+    <script th:src="@{/js/modal.js}"></script>
+    <script th:src="@{/js/brand/getDetails.js}"></script>
+    <script>
+        function openDetails(id) {
+            Modal.open('modal-details');
+            setModalBrandDetails(id);
+        }
+
+        function closeDetails(id) {
+            Modal.close('modal-details');
+        }
+
+    </script>
+</body>
+
+</html>

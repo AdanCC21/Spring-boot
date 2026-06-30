@@ -51,3 +51,11 @@ const Modal = (() => {
     return { open, close };
 
 })();
+
+document.addEventListener('click', (e) => {
+    const closeBtn = e.target.closest('.modal-close');
+    if (closeBtn) {
+        const id = closeBtn.dataset.modalId;
+        Modal.close(id);
+    }
+});

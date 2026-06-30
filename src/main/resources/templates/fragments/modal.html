@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
-    <div th:fragment="modal(id, title, size)" th:id="${id}" class="modal-overlay" role="dialog" aria-modal="true">
+    <div th:fragment="modal(id, title, size, modalBody, modalFooter)" th:id="${id}" class="modal-overlay" role="dialog" aria-modal="true">
 
         <div th:class="'modal-container modal-' + ${size ?: 'md'}">
             <!-- Header -->
             <div class="modal-header">
                 <h2 class="modal-title" th:id="${id} + '-title'" th:text="${title}">Titulo</h2>
-                <button class="modal-close" th:onclick="'Modal.close('\' + ${id} + '\')'" aria-label="Cerrar modal">
+                <button class="modal-close" th:data-modal-id="${id}" aria-label="Cerrar modal">
                     &times;
                 </button>
 
             </div>
 
             <!-- Body -->
-            <div class="modal-body">
-                <th:block th:replace="~{::modalBody}" />
+            <div class="modal-body" th:insert="${modalBody}">
             </div>
             
             <!-- Footer -->
-            <div class="modal-footer">
-                <th:block th:replace="~{::modalFooter}" />
+            <div class="modal-footer" th:insert="${modalFooter}">
             </div>
 
         </div>

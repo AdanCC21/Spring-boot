@@ -16,57 +16,73 @@
     <section class="catalog-section">
         <h3 class="catalog-title">Artículos en venta</h3>
 
-        <ul class="products-grid" th:if="${productList != null and !productList.isEmpty()}">
-            <th:block th:each="prod : ${productList}">
-                <li class="product-card">
-                    <div class="product-image-wrapper">
-                        <img th:if="${prod.image != null}" th:src="${prod.image}" alt="Imagen del producto"
-                            class="product-image" />
-                        <img th:unless="${prod.image != null}" src="https://via.placeholder.com/150" alt="Sin imagen"
-                            class="product-image" />
-                    </div>
-
-                    <div class="product-info">
-                        <span class="product-brand" th:text="${prod.brand}">Marca</span>
-                        <h2 class="product-name" th:text="${prod.title}">Título del Producto</h2>
-                        <div class="product-meta">
-                            <span class="product-price" th:text="${'$' + prod.price}">$0.00</span>
-                            <a href="#" class="btn-buy">Comprar</a>
-                        </div>
-                    </div>
-                </li>
-            </th:block>
-        </ul>
+        <button class="btn btn-default" onclick="window.location.href='/product/add'">
+            Agregar Producto
+        </button>
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <th:block th:if="${productList != null and productList.size() > 0}">
+                    <th:block th:each="prod : ${productList}">
+                        <tr>
+                            <td th:text="${prod.id}">Id</td>
+                            <td th:text="${prod.title}">Nombre</td>
+                            <td class="price-cell" th:text="${prod.price}">Precio</td>
+                            <td>
+                                <button class="btn btn-secondary" th:onclick="'openProdModal(' + ${prod.id} + ')'">
+                                    <span>Abrir detales</span>
+                                </button>
+                            </td>
+                        </tr>
+                    </th:block>
+                </th:block>
+            </tbody>
+        </table>
 
         <div class="no-products" th:unless="${productList != null and !productList.isEmpty()}">
             <p>No hay artículos disponibles en este momento.</p>
         </div>
     </section>
-    
-    <button onclick="Modal.open('modal-prueba')">
-        <span>Modal</span>
-    </button>
 
-    <div th:replace="~{fragments/modal :: modal('modal-prueba','Modal de prueba','sm')}">
-
+    <!-- <div th:replace="~{fragments/modal :: modal('modal-producto','Producto','md')}">
         <th:block th:ref="modalBody">
-            <p>Contenido de la modal</p>
+            <h2>Vista previa del producto</h2>
+
+            <article style="display: flex; flex-direction: column; gap:4px;">
+                <img id="modal-imagen-producto" src="" alt="" style="display: none; width:30px; height:30px;" />
+                <h3 id="modal-titulo-producto">Titulo del producto</h3>
+                <span id="modal-precio-producto">Precio</span>
+            </article>
         </th:block>
 
         <th:block th:ref="modalFooter">
-            <button>
-                Footer
-            </button>
-            <button onclick="closeModal()">
-                cerrar
-            </button>
+            <button onclick="Modal.close('modal-producto')">cerrar</button>
         </th:block>
-    </div>
+    </div> -->
 
     <script th:src="@{/js/modal.js}"></script>
+    <script th:src="@{/js/product/get.js}" defer></script>
     <script>
-        function closeModal(){
+        function openGenModal() {
+            Modal.open('modal-prueba');
+        }
+        function closeModal() {
             Modal.close('modal-prueba')
+        }
+
+        function openProdModal(id) {
+            Modal.open('modal-producto')
+            OpenProductDetails(id);
+        }
+        function closeModal() {
+            Modal.close('modal-producto')
         }
     </script>
 </body>

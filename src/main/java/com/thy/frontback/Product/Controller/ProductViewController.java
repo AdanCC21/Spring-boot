@@ -24,6 +24,6 @@ public class ProductViewController {
 
     @GetMapping("/add")
     public String AddProduct() {
-        return "products/AddProduct";
+        return "products/add-product";
     }
 }

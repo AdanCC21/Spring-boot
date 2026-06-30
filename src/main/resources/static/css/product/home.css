@@ -128,3 +128,52 @@
     border-radius: 8px;
     border: 1px dashed #cbd5e0;
 }
+
+/* Contenedor principal de la tabla */
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Sombra suave */
+  border-radius: 8px;
+  overflow: hidden; /* Corta las esquinas para que se vea el radio */
+}
+
+/* Estilos para el encabezado */
+.product-table thead tr {
+  background-color: #1e293b; /* Color oscuro elegante (Slate) */
+  color: #ffffff;
+  text-align: left;
+  font-weight: 600;
+}
+
+/* Espaciado en celdas de encabezado y cuerpo */
+.product-table th,
+.product-table td {
+  padding: 14px 18px;
+}
+
+/* Bordes sutiles entre filas del cuerpo */
+.product-table tbody tr {
+  border-bottom: 1px solid #e2e8f0;
+  background-color: #ffffff;
+  transition: background-color 0.2s ease; /* Transición suave para el hover */
+}
+
+/* Filas de colores intercalados (Zebra striping) */
+.product-table tbody tr:nth-of-type(even) {
+  background-color: #f8fafc;
+}
+
+/* Efecto al pasar el mouse por encima de una fila */
+.product-table tbody tr:hover {
+  background-color: #f1f5f9;
+}
+
+/* Opcional: Estilo específico para la columna de precio */
+.price-cell {
+  font-weight: 600;
+  color: #0f172a;
+}
