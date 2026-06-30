@@ -1,5 +1,6 @@
 package com.thy.frontback;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,16 +21,19 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... arg) throws Exception {
-        CreateBrandDTO brandBase = new CreateBrandDTO("Apple", new Location("USA", "San Diego"));
-        CreateBrandDTO nike = new CreateBrandDTO("Nike", new Location("USA", "New York"));
-        CreateBrandDTO addidas = new CreateBrandDTO("Addidas", new Location("USA", "Arizona"));
-        CreateBrandDTO addidas2 = new CreateBrandDTO("Addidas", new Location("USA", "Arizona"));
+        LocalDate hoy = LocalDate.now();
+        CreateBrandDTO brandBase = new CreateBrandDTO("Apple", new Location("USA", "San Diego"), hoy);
+        CreateBrandDTO nike = new CreateBrandDTO("Nike", new Location("USA", "New York"), hoy);
+        CreateBrandDTO addidas = new CreateBrandDTO("Addidas", new Location("USA", "Arizona"), hoy);
+        CreateBrandDTO addidas2 = new CreateBrandDTO("Razer", new Location("USA", "Arizona"), hoy);
+        CreateBrandDTO logitech = new CreateBrandDTO("Logitech", new Location("USA", "Arizona"), hoy);
 
         List<CreateBrandDTO> brands = new ArrayList<>();
         brands.add(nike);
         brands.add(addidas);
         brands.add(brandBase);
         brands.add(addidas2);
+        brands.add(logitech);
 
         for (CreateBrandDTO brand : brands) {
             if (!brandService.existsByName(brand.getName())) {

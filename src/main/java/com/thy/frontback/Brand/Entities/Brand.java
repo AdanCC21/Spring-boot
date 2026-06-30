@@ -1,5 +1,6 @@
 package com.thy.frontback.Brand.Entities;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,17 @@ public class Brand {
     @Column(unique = true)
     private String name;
 
+    @Column
+    private LocalDate created = LocalDate.now();
+
+    public LocalDate getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDate created) {
+        this.created = created;
+    }
+
     @OneToOne(mappedBy = "brand", cascade = CascadeType.ALL)
     private Location location;
 
@@ -35,14 +47,16 @@ public class Brand {
     public Brand() {
     }
 
-    public Brand(String name, Location location) {
+    public Brand(String name, Location location, LocalDate created) {
         this.name = name;
         this.location = location;
+        this.created = created;
     }
 
-    public Brand(String name, Location location, List<Product> products) {
+    public Brand(String name, Location location, LocalDate created, List<Product> products) {
         this.name = name;
         this.location = location;
+        this.created = created;
         this.products = products;
     }
 
@@ -78,5 +92,4 @@ public class Brand {
         this.products = products;
     }
 
-    
 }

@@ -35,7 +35,7 @@ public class BrandService {
             throw new BadRequest("El Dto no fue especificado o no es valido");
         }
 
-        Brand toCreate = new Brand(dto.getName(), dto.getLocation());
+        Brand toCreate = new Brand(dto.getName(), dto.getLocation(), dto.getCreated());
         if (dto.getProducts() != null && dto.getProducts().size() > 0) {
             System.out.println(dto.getProducts());
             

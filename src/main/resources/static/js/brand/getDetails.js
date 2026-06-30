@@ -17,8 +17,10 @@ async function setModalBrandDetails(id) {
     document.getElementById('modal-id-brand').textContent = `ID : ${data.id}`;
     document.getElementById('modal-name-brand').textContent = `Nombre : ${data.name}`;
 
+    const ul = document.getElementById('modal-products-brand');
     if (data.products && data.products.length > 0) {
-        const ul = document.getElementById('modal-products-brand');
+        ul.innerHTML = '';
+        ul.style.display = 'block';
 
         const fragment = document.createDocumentFragment();
 
@@ -31,6 +33,7 @@ async function setModalBrandDetails(id) {
         ul.appendChild(fragment);
 
     } else {
-        document.getElementById('modal-products-brand').style.display = 'none'
+        ul.innerHTML = '';
+        ul.style.display = 'none';
     }
 }

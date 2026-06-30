@@ -18,16 +18,17 @@
             <tr>
                 <th>Id</th>
                 <th>Nombre</th>
+                <th>Fecha de creacion</th>
                 <th>Acciones</th>
             </tr>
             <th:block th:each="brand : ${brands}">
                 <tr>
                     <td th:text="${brand.id}">Id</td>
                     <td th:text="${brand.name}">Nombre</td>
+                    <td th:if="${brand.created != null}" th:text="${brand.created}">Fecha</td>
+                    <td th:unless="${brand.created != null}">Fecha (No especificada)</td>
                     <td>
                         <button class="btn btn-default" th:onclick="'openDetails(' + ${brand.id} + ')'">Ver Detalles</button>
-                        <button class="btn btn-default" th:onclick="'openDetails(' + ${brand.id} + ')'">Ver Detalles
-                            2</button>
                     </td>
                 </tr>
             </th:block>
@@ -63,6 +64,12 @@
             Modal.close('modal-details');
         }
 
+    </script>
+
+    <script>
+        function handleDate(date){
+
+        }
     </script>
 </body>
 
